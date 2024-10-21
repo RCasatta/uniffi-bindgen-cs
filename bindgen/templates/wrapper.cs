@@ -30,7 +30,8 @@ using {{ imported_class }};
 {%- endfor %}
 
 {%- call cs::docstring_value(ci.namespace_docstring(), 0) %}
-namespace {{ config.namespace() }};
+
+namespace {{ config.namespace() }} {
 
 {%- for alias in self.type_aliases() %}
 using {{ alias.alias }} = {{ alias.original_type }};
@@ -63,3 +64,5 @@ using {{ alias.alias }} = {{ alias.original_type }};
 }
 
 {% import "macros.cs" as cs %}
+
+} // namespace close
