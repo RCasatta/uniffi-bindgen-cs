@@ -33,8 +33,10 @@ static class _UniFFILib {
         {% endfor -%}
     }
 
+    public const string NativeLib = "{{ config.cdylib_name() }}";
+
     {% for func in ci.iter_ffi_function_definitions() -%}
-    [DllImport("{{ config.cdylib_name() }}")]
+    [DllImport(NativeLib)]
     public static extern {%- match func.return_type() -%}{%- when Some with (type_) %} {{ type_.borrow()|ffi_type_name }}{% when None %} void{% endmatch %} {{ func.name() }}(
         {%- call cs::arg_list_ffi_decl(func) %}
     );
