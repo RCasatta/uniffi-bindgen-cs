@@ -106,7 +106,7 @@ impl Config {
     pub fn access_modifier(&self) -> String {
         match self.access_modifier.as_ref() {
             Some(value) => value.clone(),
-            None => "internal".to_string(),
+            None => "public".to_string(),
         }
     }
 }
